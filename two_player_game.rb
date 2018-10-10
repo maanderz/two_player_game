@@ -1,16 +1,5 @@
-class Player
-
-  attr_accessor :name, :lives
-  def initialize(name)
-    @name = name
-    @lives = 3
-  end
-
-  def alive?
-    @lives > 0
-  end 
-
-end
+require "./players"
+require "./questions"
 
 class Game 
 
@@ -22,7 +11,7 @@ class Game
     puts "Player 1: Enter your name"
     @player1 = Player.new(gets.chomp)
 
-    puts "Your turn, Player 2: Enter your name"
+    puts "Player 2: Enter your name"
     @player2 = Player.new(gets.chomp)
 
     players.push(@player1, @player2)
@@ -34,6 +23,7 @@ class Game
   
   def play
 
+    puts "--BEGIN--"
     puts "Ready to answer some math questions?"
 
       @players.cycle do |player| 
@@ -63,17 +53,6 @@ class Game
       end 
     end
   end
-
-
-class Questions
-  attr_accessor :correct_answer, :show
-  def initialize
-    @number1 = rand(1...20)
-    @number2 = rand(1...20)
-    @correct_answer = @number1 + @number2
-    @show = "What is #{@number1} + #{@number2}?"  
-  end 
-end  
 
 start = Game.new
 
